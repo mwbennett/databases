@@ -26,8 +26,9 @@ app = {
       e.preventDefault();
 
       var message = {
-        username: app.username,
-        text: app.$text.val()
+        user: app.username,
+        message: app.$text.val(),
+        room: "Default"
       };
 
       app.$text.val('');
@@ -78,7 +79,7 @@ app = {
       app.startSpinner();
       $.ajax({
         type: 'POST',
-        url: app.server,
+        url: app.servermessages,
         data: JSON.stringify(message),
         contentType: 'application/json',
         success: function(json){

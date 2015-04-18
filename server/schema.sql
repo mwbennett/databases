@@ -8,6 +8,10 @@ CREATE TABLE messages (
   user VARCHAR(20), room VARCHAR(20), message VARCHAR(140)
 );
 
+CREATE TABLE users (
+  user VARCHAR(20)
+);
+
 /* Create other tables and define schemas for them here! */
 
 
