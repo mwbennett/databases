@@ -36,23 +36,24 @@ app = {
     },
 
     renderMessage: function(message){
-      var $user = $("<div>", {class: 'user'}).text(message.username);
-      var $text = $("<div>", {class: 'text'}).text(message.text);
-      var $message = $("<div>", {class: 'chat', 'data-id': message.objectId }).append($user, $text);
+      var $user = $("<div>", {class: 'user'}).text(message.user);
+      var $text = $("<div>", {class: 'text'}).text(message.message);
+      var $message = $("<div>", {class: 'chat', 'data-id': message.room }).append($user, $text);
       return $message;
     },
 
     displayMessage: function(message){
       if( app.blockedUsers.indexOf(message.username) < 0 ){
-        if( !app.onscreenMessages[message.objectId] ){
+        // if( !app.onscreenMessages[message.objectId] ){
           var $html = app.renderMessage(message);
           $('#chats').prepend($html);
-          app.onscreenMessages[message.objectId] = true;
-        }
+          // app.onscreenMessages[message.objectId] = true;
+        // }
       }
     },
 
     displayMessages: function(messages){
+      $('#chats').html('');
       for( var i = 0; i < messages.length; i++ ){
         app.displayMessage(messages[i]);
       }

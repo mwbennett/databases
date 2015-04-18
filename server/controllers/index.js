@@ -1,18 +1,19 @@
 var models = require('../models');
 var bluebird = require('bluebird');
 var utils = require('../utils');
-var sampleData = {results: [{username:'test', message: 'this is a test', roomname:'panic'}]};
+var sampleData = {results: [{user:'test', message: 'this is a test', room:'panic'}]};
 
 module.exports = {
   messages: {
     get: function (req, res) {
-      res.send(JSON.stringify(sampleData));
-      // res.send();
-      // var data = models.messages.get();
-      // utils.sendResponse(res, data, 200);
+      models.messages.get(function(input){
+        res.send(JSON.stringify({results: input}));
+      });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
 
+      models.messages.post(req);
+      res.send();
     } // a function which handles posting a message to the database
   },
 
@@ -22,43 +23,4 @@ module.exports = {
     post: function (req, res) {}
   }
 };
-
-
-
-// var utils = require('./utils');
-
-// var objectId = 1;
-// var messages = [
-//   // Useful for debugging
-//   // {
-//   //   text: 'hello world',
-//   //   username: 'fred',
-//   //   objectId: objectId
-//   // }
-// ];
-
-// var actions = {
-//   'GET': function(request, response){
-//     utils.sendResponse(response, {results: messages});
-//   },
-//   'POST': function(request, response){
-//     utils.collectData(request, function(message){
-//       message.objectId = ++objectId;
-//       messages.push(message);
-//       utils.sendResponse(response, {objectId: 1}, 201);
-//     });
-//   },
-//   'OPTIONS': function(request, response){
-//     utils.sendResponse(response);
-//   }
-// };
-
-// exports.requestHandler = function(request, response) {
-//   var action = actions[request.method];
-//   if( action ){
-//     action(request, response);
-//   } else {
-//     utils.sendResponse(response, "Not Found", 404);
-//   }
-// };
 

@@ -4,12 +4,12 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () {
+    get: function (cb) {
       db.query('SELECT * FROM `messages`', function(err, res, fields){
         if (err){
           throw err;
         } else {
-          console.log("GET MESSAGES RESULTS: ", res);
+          cb(res);
         }
       });
     }, // a function which produces all the messages
