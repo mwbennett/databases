@@ -1,9 +1,11 @@
+DROP DATABASE chat;
+
 CREATE DATABASE chat;
 
 USE chat;
 
 CREATE TABLE messages (
-  /* Describe your table here.*/
+  user VARCHAR(20), room VARCHAR(20), message VARCHAR(140)
 );
 
 /* Create other tables and define schemas for them here! */
